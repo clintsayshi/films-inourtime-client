@@ -4,7 +4,7 @@ import Header from "./Header";
 
 function Layout({ children }) {
   return (
-    <div className="dark">
+    <div className="dark:bg-gray-900 min-h-screen">
       <Header />
 
       {children}
