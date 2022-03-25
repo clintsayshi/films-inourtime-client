@@ -17,9 +17,9 @@ function Header() {
 
   return (
     <header className="bg-gray-50 dark:bg-gray-900">
-      <nav className="container mx-auto px-4 py-2 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <button className="sm:hidden text-gray-900 dark:text-gray-100">
+      <nav className="container mx-auto py-2 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          {/*  <button className="sm:hidden text-gray-900 dark:text-gray-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-8 w-8"
@@ -34,15 +34,15 @@ function Header() {
                 d="M4 8h16M4 16h16"
               />
             </svg>
-          </button>
+          </button> */}
 
           <Link href="/">
-            <a className="text-lg font-medium dark:text-gray-100">Home</a>
+            <a className="text-lg dark:text-gray-100">Home</a>
           </Link>
 
           <div className="hidden sm:flex gap-4">
-            <a className="text-lg font-medium dark:text-gray-100">Movies</a>
-            <a className="text-lg font-medium dark:text-gray-100">Series</a>
+            <a className="text-lg dark:text-gray-100">Movies</a>
+            <a className="text-lg dark:text-gray-100">Series</a>
           </div>
         </div>
 
