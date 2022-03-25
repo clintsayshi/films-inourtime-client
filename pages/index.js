@@ -27,7 +27,7 @@ export default function Home({ movies, tv }) {
         <section className="container mx-auto px-4 flex flex-col">
           <div className="py-16 sm:py-24">
             <h1 className="w-max mx-auto px-4 py-2 text-lg sm:text-4xl text-center    -gray-900 dark:border-gray-100 rounded-full dark:text-gray-100">
-              You don't know what to watch?
+              You do not know what to watch?
             </h1>
           </div>
         </section>
