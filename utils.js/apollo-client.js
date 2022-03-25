@@ -22,7 +22,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 // If you provide a link chain to ApolloClient, you
 // don't provide the `uri` option.
 const client = new ApolloClient({
-  uri: "http://films-inourtime-server.herokuapp.com",
+  //uri: "http://films-inourtime-server.herokuapp.com",
+  uri: "http://localhost:4000",
   cache: new InMemoryCache(),
 });
 
