@@ -33,8 +33,8 @@ export const GET_TRENDING_MOVIES = gql`
 `;
 
 export const GET_TRENDING_TV = gql`
-  query TV($timeWindow: String!, $limit: Int!) {
-    topTrendingTVShows(time_window: $timeWindow, limit: $limit) {
+  query getTrendingTV($timeWindow: String!, $limit: Int!) {
+    trendingTVShows(time_window: $timeWindow, limit: $limit) {
       original_name
       id
       poster_path
@@ -81,6 +81,39 @@ export const GET_MOVIE = gql`
       status
       popularity
       title
+    }
+    mediaConfig {
+      secure_base_url
+      poster_sizes
+      logo_sizes
+    }
+  }
+`;
+
+export const GET_SERIES = gql`
+  query getTVShow($tvShowId: ID!) {
+    TVShow(id: $tvShowId) {
+      id
+      original_name
+      original_language
+      name
+      vote_average
+      overview
+      seasons {
+        id
+        air_date
+        episode_count
+        name
+        poster_path
+      }
+      number_of_episodes
+      number_of_seasons
+      poster_path
+      first_air_date
+      genres {
+        name
+        id
+      }
     }
     mediaConfig {
       secure_base_url
