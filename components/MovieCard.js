@@ -7,7 +7,7 @@ function MovieCard({ movie, mediaConfig }) {
   const { secure_base_url, poster_sizes } = mediaConfig;
 
   return (
-    <Link key={movie.id} href={`/${id}`}>
+    <Link key={movie.id} href={`/movie/${id}`}>
       <a className="relative block hover:shadow py-4 hover:px-4 transition-all ease-in-out duration-300 group">
         <div className="relative w-full h-96 lg:h-96 mb-2">
           <Image

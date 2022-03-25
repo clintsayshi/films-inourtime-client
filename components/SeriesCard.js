@@ -2,13 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function SeriveCard({ series, mediaConfig }) {
+function SeriesCard({ series, mediaConfig }) {
   const { id, poster_path, original_name, first_air_date, vote_average } =
     series;
   const { secure_base_url, poster_sizes } = mediaConfig;
 
   return (
-    <Link href={`/${id}`}>
+    <Link href={`/tvshow/${id}`}>
       <a className="relative block hover:shadow py-4 hover:px-4 transition-all ease-in-out duration-300 group">
         <div className="relative w-full h-96 lg:h-96 mb-2">
           <Image
@@ -48,4 +48,4 @@ function SeriveCard({ series, mediaConfig }) {
   );
 }
 
-export default SeriveCard;
+export default SeriesCard;
