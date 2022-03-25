@@ -1,13 +1,109 @@
-import { useQuery } from "@apollo/client";
-import React from "react";
+import { gql, request, useLazyQuery, useQuery } from "@apollo/client";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Layout from "../components/Layout";
 import client from "../utils.js/apollo-client";
 import { GET_MOVIE, GET_TRENDING_MOVIES } from "../utils.js/queries";
 
-function Movie({ movie }) {
+function Movie({ data }) {
+  const {
+    original_title,
+    vote_average,
+    release_date,
+    status,
+    production_companies,
+    genres,
+    overview,
+    poster_path,
+  } = data.Movie;
+  const { secure_base_url, poster_sizes } = data.mediaConfig;
+
+  const [posterModal, setPosterModal] = useState(false);
+
   return (
     <Layout>
-      <h1>{movie.title}</h1>
+      <div className="hidden absolute inset-0 h-screen w-full p-6 bg-black bg-opacity-60 z-50">
+        <div className="h-full w-full">
+          <figure className="relative h-full p-4 bg-gray-100 z-30">
+            <button className="absolute top-4 right-6 dark:text-gray-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <Image
+              className="block object-contain object-top position-fixed"
+              src={`${secure_base_url}original/${poster_path}`}
+              alt=""
+              layout="fill"
+              priority
+            />
+          </figure>
+        </div>
+      </div>
+
+      <div className="relative w-full h-72">
+        <Image
+          className="block object-fit object-top position-fixed"
+          src={`${secure_base_url}${poster_sizes[5]}/${poster_path}`}
+          alt=""
+          layout="fill"
+          priority
+        />
+
+        <button className="absolute bottom-4 bg-black bg-opacity-30 p-2 rounded-full left-1/2 text-gray-100 dark:text-gray-100">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <section className="container mx-auto ">
+        <header className="p-4 flex flex-col items-center gap-2">
+          <h2 className="text-2xl text-center uppercase font-medium dark:text-gray-100">
+            {original_title} - {release_date.substring(0, 4)}
+          </h2>
+          <small className="text-gray-900 dark:text-gray-100">
+            {vote_average}&nbsp;IMDb rating
+          </small>
+          <div className="py-2 flex items-center gap-2">
+            {genres.map((genre) => (
+              <a
+                key={genre.id}
+                className="w-max block px-4 py-1 text-sm text-center text-gray-900 dark:text-gray-100 border rounded-full"
+                href="#"
+              >
+                {genre.name}
+              </a>
+            ))}
+          </div>
+        </header>
+
+        <div className="container mx-auto p-4 flex flex-col">
+          <p className="text-gray-900 dark:text-gray-100">{overview}</p>
+        </div>
+      </section>
     </Layout>
   );
 }
@@ -18,37 +114,32 @@ export const getStaticPaths = async () => {
     variables: { timeWindow: "day", limit: 20 },
   });
 
-  console.log(JSON.stringify(error, null, 2));
-
-  if (error) {
-    console.log("Error in getStaticPaths()");
-  }
-
-  console.log("WE here");
-
-  const peths = data?.topTrendingMovies.map((movie) => ({
-    params: { id: movie.id },
-  }));
+  if (loading) console.log("LOADING:");
+  if (error) console.log("ERROR:", error);
 
   return {
-    paths: peths || [],
+    paths:
+      data?.topTrendingMovies.map((movie) => ({
+        params: { id: movie.id },
+      })) || [],
     fallback: false,
   };
 };
 
 export const getStaticProps = async ({ params }) => {
+  console.log(params);
   const { loading, error, data } = await client.query({
     query: GET_MOVIE,
-    variables: { id: params.id },
+    variables: {
+      movieId: params.id,
+    },
   });
 
-  if (error) {
-    console.log("Error in getStaticProps()");
-  }
+  if (error) console.log(error);
 
   return {
     props: {
-      movie: data.Movie,
+      data,
     },
   };
 };
