@@ -27,7 +27,7 @@ export default function Home({ movies, tv }) {
         <section className="container mx-auto px-4 flex flex-col">
           <div className="py-16 sm:py-24">
             <h1 className="w-max mx-auto px-4 py-2 text-lg sm:text-4xl text-center    -gray-900 dark:border-gray-100 rounded-full dark:text-gray-100">
-              You do not know what to watch?
+              Find something to watch
             </h1>
           </div>
         </section>
@@ -45,8 +45,8 @@ export default function Home({ movies, tv }) {
             </div>
           </header>
 
-          <div className="py-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {movies.topTrendingMovies?.slice(0, 3).map((movie) => {
+          <div className="py-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {movies?.topTrendingMovies.slice(0, 4).map((movie) => {
               return (
                 <MovieCard
                   key={movie.id}
@@ -65,14 +65,14 @@ export default function Home({ movies, tv }) {
             </h2>
 
             <div className="flex items-center">
-              <Link href="/trending-movies">
+              <Link href="/trending-series">
                 <a className="text-gray-900 dark:text-gray-100">View All</a>
               </Link>
             </div>
           </header>
 
-          <div className="py-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {tv?.slice(0, 3).map((series) => {
+          <div className="py-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {tv?.slice(0, 4).map((series) => {
               return (
                 <SeriesCard
                   key={series.id}
@@ -91,12 +91,12 @@ export default function Home({ movies, tv }) {
 export const getStaticProps = async () => {
   const { error: moviesError, data: movies } = await client.query({
     query: GET_TRENDING_MOVIES,
-    variables: { timeWindow: "day", limit: 3 },
+    variables: { timeWindow: "day", limit: 4 },
   });
 
   const { error: tvError, data: tv } = await client.query({
     query: GET_TRENDING_TV,
-    variables: { timeWindow: "day", limit: 3 },
+    variables: { timeWindow: "day", limit: 4 },
   });
 
   if (moviesError) console.log("ERROR...");
@@ -105,7 +105,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       movies: movies,
-      tv: tv.topTrendingTVShows,
+      tv: tv.trendingTVShows,
     },
   };
 };
