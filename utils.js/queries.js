@@ -24,14 +24,42 @@ export const GET_TRENDING_MOVIES = gql`
       title
       status
     }
+    mediaConfig {
+      secure_base_url
+      poster_sizes
+      logo_sizes
+    }
+  }
+`;
+
+export const GET_TRENDING_TV = gql`
+  query TV($timeWindow: String!, $limit: Int!) {
+    topTrendingTVShows(time_window: $timeWindow, limit: $limit) {
+      original_name
+      id
+      poster_path
+      first_air_date
+      seasons {
+        id
+        air_date
+        episode_count
+      }
+
+      vote_average
+    }
+    mediaConfig {
+      secure_base_url
+      poster_sizes
+      logo_sizes
+    }
   }
 `;
 
 export const GET_MOVIE = gql`
-  query movie($movieId: ID!) {
+  query Movie($movieId: ID!) {
     Movie(id: $movieId) {
-      id
       original_title
+      id
       original_language
       release_date
       overview
@@ -42,10 +70,7 @@ export const GET_MOVIE = gql`
         name
         id
       }
-      vote_count
       vote_average
-      revenue
-      runtime
       production_companies {
         id
         homepage
@@ -53,9 +78,14 @@ export const GET_MOVIE = gql`
         name
         origin_country
       }
+      status
       popularity
       title
-      status
+    }
+    mediaConfig {
+      secure_base_url
+      poster_sizes
+      logo_sizes
     }
   }
 `;
