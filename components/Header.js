@@ -17,7 +17,7 @@ function Header() {
 
   return (
     <header className="bg-gray-50 dark:bg-gray-900">
-      <nav className="container mx-auto py-2 flex items-center justify-between">
+      <nav className="container mx-auto px-4 py-2 flex items-center justify-between">
         <div className="flex items-center gap-4">
           {/*  <button className="sm:hidden text-gray-900 dark:text-gray-100">
             <svg
