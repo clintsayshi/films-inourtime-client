@@ -20,33 +20,30 @@ function Series({ data }) {
     genres,
     overview,
     poster_path,
+    backdrop_path,
   } = data.TVShow;
   const { secure_base_url, poster_sizes } = data.mediaConfig;
 
   return (
     <Layout>
-      <div className="hidden absolute inset-0 h-screen w-full p-6 bg-black bg-opacity-60 z-50">
-        <div className="h-full w-full">
-          <figure className="relative h-full p-4 bg-gray-100 z-30">
-            <Image
-              className="block object-contain object-top position-fixed"
-              src={`${secure_base_url}original/${poster_path}`}
-              alt=""
-              layout="fill"
-              priority
-            />
-          </figure>
-        </div>
-      </div>
-
-      <div className="relative w-full h-72">
+      <div className="relative w-full h-96 group">
         <Image
-          className="block object-fit object-top position-fixed"
-          src={`${secure_base_url}${poster_sizes[5]}/${poster_path}`}
+          className="block object-cover object-top position-fixed"
+          src={`${secure_base_url}/${poster_sizes[4]}/${poster_path}`}
           alt=""
           layout="fill"
           priority
         />
+
+        <div className="hidden sm:block absolute left-1/2 bottom-1/2 transform translate-y-1/2 -translate-x-1/2 h-80 w-56">
+          <Image
+            className="block object-cover object-center"
+            src={`${secure_base_url}/${poster_sizes[4]}/${poster_path}`}
+            alt=""
+            layout="fill"
+            priority
+          />
+        </div>
       </div>
 
       <section className="container mx-auto ">
