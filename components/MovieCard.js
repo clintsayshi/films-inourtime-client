@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 function MovieCard({ movie, mediaConfig }) {
-  const { id, poster_path, original_title, release_date, vote_average } = movie;
+  const { id, poster_path, title, release_date, vote_average } = movie;
   const { secure_base_url, poster_sizes } = mediaConfig;
 
   return (
@@ -18,7 +18,7 @@ function MovieCard({ movie, mediaConfig }) {
           />
         </div>
         <h3 className="text-lg underline underline-offset-4 dark:text-gray-100">
-          {original_title}&nbsp;({release_date.substring(0, 4)})
+          {title}&nbsp;({release_date.substring(0, 4)})
         </h3>
         <div className="flex items-center justify-between gap-2">
           <small className="text-gray-900 dark:text-gray-100">
