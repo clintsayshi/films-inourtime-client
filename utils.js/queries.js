@@ -5,6 +5,7 @@ export const GET_TRENDING_MOVIES = gql`
     topTrendingMovies(time_window: $timeWindow, limit: $limit) {
       id
       original_title
+      title
       original_language
       release_date
       overview
@@ -36,6 +37,7 @@ export const GET_TRENDING_TV = gql`
   query getTrendingTV($timeWindow: String!, $limit: Int!) {
     trendingTVShows(time_window: $timeWindow, limit: $limit) {
       original_name
+      name
       id
       poster_path
       first_air_date

@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 function SeriesCard({ series, mediaConfig }) {
-  const { id, poster_path, original_name, first_air_date, vote_average } =
+  const { id, poster_path, original_name, name, first_air_date, vote_average } =
     series;
   const { secure_base_url, poster_sizes } = mediaConfig;
 
@@ -19,7 +19,7 @@ function SeriesCard({ series, mediaConfig }) {
           />
         </div>
         <h3 className="text-lg underline underline-offset-4 dark:text-gray-100">
-          {original_name}&nbsp;({first_air_date.substring(0, 4)})
+          {name}&nbsp;({first_air_date.substring(0, 4)})
         </h3>
         <div className="flex items-center justify-between gap-2">
           <small className="text-gray-900 dark:text-gray-100">
