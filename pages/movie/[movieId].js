@@ -10,6 +10,7 @@ function Movie({ data }) {
     original_title,
     vote_average,
     release_date,
+    backdrop_path,
     status,
     production_companies,
     genres,
@@ -22,10 +23,12 @@ function Movie({ data }) {
 
   return (
     <Layout>
-      <div className="relative w-full h-72">
+      <div
+        className={`relative w-full h-96 bg-[${secure_base_url}${poster_sizes[5]}/${poster_path}]`}
+      >
         <Image
-          className="block object-fit object-top position-fixed"
-          src={`${secure_base_url}${poster_sizes[5]}/${poster_path}`}
+          className="block object-cover object-center position-fixed"
+          src={`${secure_base_url}/original/${backdrop_path}`}
           alt=""
           layout="fill"
           priority
