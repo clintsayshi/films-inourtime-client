@@ -52,7 +52,12 @@ function Series({ data }) {
           <h2 className="text-2xl text-center uppercase font-medium dark:text-gray-100">
             {name} - {first_air_date.substring(0, 4)}
           </h2>
-          <small className="text-sm dark:text-gray-400">{original_name}</small>
+          <small
+            title="Original name of the show"
+            className="text-sm dark:text-gray-400"
+          >
+            {original_name}
+          </small>
           <small className="text-gray-900 dark:text-gray-100">
             {vote_average}&nbsp;IMDb rating
           </small>
