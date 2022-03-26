@@ -8,6 +8,7 @@ import { GET_MOVIE, GET_TRENDING_MOVIES } from "../../utils.js/queries";
 function Movie({ data }) {
   const {
     original_title,
+    title,
     vote_average,
     release_date,
     backdrop_path,
@@ -38,8 +39,9 @@ function Movie({ data }) {
       <section className="container mx-auto ">
         <header className="p-4 flex flex-col items-center gap-2">
           <h2 className="text-2xl text-center uppercase font-medium dark:text-gray-100">
-            {original_title} - {release_date.substring(0, 4)}
+            {title} - {release_date.substring(0, 4)}
           </h2>
+          <small className="text-sm dark:text-gray-400">{original_title}</small>
           <small className="text-gray-900 dark:text-gray-100">
             {vote_average}&nbsp;IMDb rating
           </small>

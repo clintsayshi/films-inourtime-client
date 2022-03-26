@@ -13,6 +13,7 @@ import {
 function Series({ data }) {
   const {
     original_name,
+    name,
     vote_average,
     first_air_date,
     status,
@@ -49,8 +50,9 @@ function Series({ data }) {
       <section className="container mx-auto ">
         <header className="p-4 flex flex-col items-center gap-2">
           <h2 className="text-2xl text-center uppercase font-medium dark:text-gray-100">
-            {original_name} - {first_air_date.substring(0, 4)}
+            {name} - {first_air_date.substring(0, 4)}
           </h2>
+          <small className="text-sm dark:text-gray-400">{original_name}</small>
           <small className="text-gray-900 dark:text-gray-100">
             {vote_average}&nbsp;IMDb rating
           </small>
