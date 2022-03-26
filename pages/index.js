@@ -33,7 +33,7 @@ export default function Home({ movies, tv }) {
         </section>
 
         <section className="relative container mx-auto px-4">
-          <header className="sticky top-0 flex items-center justify-between bg-gray-50 dark:bg-gray-900 z-50">
+          <header className="sticky top-0 flex items-center justify-between dark:bg-gray-900 z-50">
             <h2 className="text-2xl font-medium dark:text-gray-100">
               Top Trending Movies
             </h2>
@@ -59,7 +59,7 @@ export default function Home({ movies, tv }) {
         </section>
 
         <section className="relative container mx-auto px-4">
-          <header className="sticky top-0 py-2 flex items-center justify-between bg-gray-50 dark:bg-gray-900 z-50">
+          <header className="sticky top-0 py-2 flex items-center justify-between dark:bg-gray-900 z-50">
             <h2 className="text-2xl font-medium dark:text-gray-100">
               Top Trending Shows
             </h2>
