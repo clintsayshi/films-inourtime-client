@@ -29,7 +29,7 @@ function TrendingMovies() {
           </h2>
         </header>
         <MovieGrid
-          movies={data?.topTrendingMovies}
+          movies={data?.trendingMovies}
           mediaConfig={data?.mediaConfig}
         />
       </QueryResult>
