@@ -24,7 +24,6 @@ function Genre({ location }) {
     <Layout>
       <Head>
         <title>{router.query.name} | Watch Suggestions</title>
-
         <meta
           name="description"
           content="helping you find something to watch"
