@@ -12,10 +12,18 @@ function TrendingMovies() {
 
   return (
     <Layout>
+      <Head>
+        <title>Trending TV Shows RN</title>
+        <meta
+          name="description"
+          content="helping you find something to watch"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <QueryResult loading={loading} error={error} data={data}>
         <header className="container mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            Top Rated Trending Series
+            Top Rated Trending TV Shows
           </h2>
         </header>
         <SeriesGrid

@@ -12,6 +12,15 @@ function TrendingMovies() {
 
   return (
     <Layout>
+      <Head>
+        <title>Trending Movies RN</title>
+        <meta
+          name="description"
+          content="helping you find something to watch"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <QueryResult loading={loading} error={error} data={data}>
         <header className="container mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
