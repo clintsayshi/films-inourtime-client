@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import Layout from "../components/Layout";
 import MovieGrid from "../components/MovieGrid";
+import Head from "next/head";
 import QueryResult from "../components/QueryResult";
 import { GET_TRENDING_MOVIES } from "../utils.js/queries";
 
