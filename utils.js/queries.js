@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_TRENDING_MOVIES = gql`
   query TopTrendingMovies($timeWindow: String!, $limit: Int!) {
-    topTrendingMovies(time_window: $timeWindow, limit: $limit) {
+    trendingMovies(time_window: $timeWindow, limit: $limit) {
       id
       original_title
       title
@@ -48,6 +48,32 @@ export const GET_TRENDING_TV = gql`
       }
 
       vote_average
+    }
+    mediaConfig {
+      secure_base_url
+      poster_sizes
+      logo_sizes
+    }
+  }
+`;
+
+export const GET_LIST_OF_GENRES = gql`
+  query ListOfGenres($mediaType: String!) {
+    listOfGenres(mediaType: $mediaType) {
+      id
+      name
+    }
+  }
+`;
+
+export const GET_MOVIES_BY_GENRE = gql`
+  query MoviesByGenre($genreId: ID!, $year: Int!) {
+    moviesByGenre(genreId: $genreId, year: $year) {
+      id
+      title
+      release_date
+      vote_average
+      poster_path
     }
     mediaConfig {
       secure_base_url
