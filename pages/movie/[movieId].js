@@ -82,7 +82,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths:
-      data?.topTrendingMovies.map((movie) => ({
+      data?.trendingMovies.map((movie) => ({
         params: { movieId: movie.id },
       })) || [],
     fallback: false,
