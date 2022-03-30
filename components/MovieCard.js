@@ -12,7 +12,7 @@ function MovieCard({ movie, mediaConfig }) {
         <div className="relative w-full h-96 lg:h-96 mb-2">
           <Image
             className="block object-cover object-top"
-            src={`${secure_base_url}/t/p/${poster_sizes[4]}/${poster_path}`}
+            src={`${secure_base_url}/t/p/${poster_sizes[2]}/${poster_path}`}
             layout="fill"
             alt=""
           />
