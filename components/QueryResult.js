@@ -11,9 +11,12 @@ function QueryResult(props) {
     );
   }
   if (error) {
+    console.log(error);
     return (
       <div className="flex flex-col item-center">
-        <h1 className="text-2xl font-medium">ERROR...</h1>
+        <h1 className="text-2xl font-medium">
+          <code>{}</code>
+        </h1>
       </div>
     );
   }
