@@ -94,6 +94,12 @@ export const GET_MOVIE = gql`
       adult
       backdrop_path
       poster_path
+      videos {
+        id
+        name
+        key
+        type
+      }
       genres {
         name
         id
