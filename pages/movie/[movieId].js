@@ -27,8 +27,11 @@ function Movie({ data }) {
   const [posterModal, setPosterModal] = useState(false);
 
   const getTrailer = () => {
-    const trailer = videos.find((x) => x.type === "Trailer");
-    return trailer.key;
+    if (videos) {
+      const trailer = videos.find((x) => x.type === "Trailer");
+      return trailer.key;
+    }
+    return null;
   };
 
   const getDate = (date) => {
@@ -70,7 +73,16 @@ function Movie({ data }) {
           <div
             className={`relative w-full bg-[${secure_base_url}${poster_sizes[5]}/${poster_path}]`}
           >
-            <YoutubeEmbed videoId={getTrailer()} />
+            {getTrailer() ? (
+              <YoutubeEmbed videoId={getTrailer()} />
+            ) : (
+              <Image
+                className="object-cover"
+                src={`${secure_base_url}/original/${backdrop_path}`}
+                alt={original_title}
+                layout="fill"
+              />
+            )}
           </div>
 
           <div className="space-y-2">
