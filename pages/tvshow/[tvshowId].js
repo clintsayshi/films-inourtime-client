@@ -12,6 +12,7 @@ import {
 import { getDate, getTrailer, monthNames } from "../../utils.js/functions";
 import Link from "next/link";
 import YoutubeEmbed from "../../components/YoutubeEmbed";
+import Head from "next/head";
 
 function TVShow({ data }) {
   const {
@@ -32,6 +33,15 @@ function TVShow({ data }) {
 
   return (
     <Layout>
+      <Head>
+        <title>{name} | Watch Suggestions</title>
+        <meta
+          name="description"
+          content="helping you find something to watch"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className="container mx-auto p-4 space-y-10">
         <header className="space-y-6">
           <small className="flex items-center space-x-2 text-base text-gray-800 sm:text-sm dark:text-gray-100">

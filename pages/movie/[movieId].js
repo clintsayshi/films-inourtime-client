@@ -6,6 +6,7 @@ import { GET_MOVIE, GET_TRENDING_MOVIES } from "../../utils.js/queries";
 import Link from "next/link";
 import YoutubeEmbed from "../../components/YoutubeEmbed";
 import { getDate, getTrailer } from "../../utils.js/functions";
+import Head from "next/head";
 
 function Movie({ data }) {
   const {
@@ -25,6 +26,15 @@ function Movie({ data }) {
 
   return (
     <Layout>
+      <Head>
+        <title>{title} | Watch Suggestions</title>
+        <meta
+          name="description"
+          content="helping you find something to watch"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className="container mx-auto p-4 space-y-10">
         <header className="space-y-6">
           <small className="flex items-center space-x-2 text-base text-gray-800 sm:text-sm dark:text-gray-100">
