@@ -27,11 +27,12 @@ function Movie({ data }) {
   const [posterModal, setPosterModal] = useState(false);
 
   const getTrailer = () => {
-    if (videos) {
+    try {
       const trailer = videos.find((x) => x.type.toLowerCase() === "trailer");
       return trailer.key;
+    } catch {
+      return null;
     }
-    return null;
   };
 
   const getDate = (date) => {
