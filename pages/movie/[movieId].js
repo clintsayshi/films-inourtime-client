@@ -28,7 +28,7 @@ function Movie({ data }) {
 
   const getTrailer = () => {
     if (videos) {
-      const trailer = videos.find((x) => x.type === "Trailer");
+      const trailer = videos.find((x) => x.type.toLowerCase() === "trailer");
       return trailer.key;
     }
     return null;
