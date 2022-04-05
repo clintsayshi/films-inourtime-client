@@ -72,7 +72,7 @@ function Movie({ data }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 space-y-4 md:space-y-0 md:space-x-12">
           <div
-            className={`relative w-full bg-[${secure_base_url}${poster_sizes[5]}/${poster_path}]`}
+            className={`relative w-full h-72 lg:h-96 bg-[${secure_base_url}${poster_sizes[5]}/${poster_path}]`}
           >
             {getTrailer() ? (
               <YoutubeEmbed videoId={getTrailer()} />
@@ -142,7 +142,6 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  console.log(params);
   const { loading, error, data } = await client.query({
     query: GET_MOVIE,
     variables: {

@@ -15,8 +15,6 @@ import {
 } from "../utils.js/queries";
 
 export default function Home({ movies, tv, genres }) {
-  console.log(genres);
-
   return (
     <Layout>
       <Head>
