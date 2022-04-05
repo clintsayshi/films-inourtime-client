@@ -1,7 +1,7 @@
 import React from "react";
 
 function QueryResult(props) {
-  const { loading, error, data, children } = props;
+  const { loading, error, children } = props;
 
   if (loading) {
     return (

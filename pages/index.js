@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
-import { gql, useQuery } from "@apollo/client";
 import MovieCard from "../components/MovieCard";
-import SeriesCard from "../components/SeriesCard";
+import TVShowCard from "../components/TVShowCard";
 import Layout from "../components/Layout";
 import client from "../utils.js/apollo-client";
 import {
@@ -75,11 +72,11 @@ export default function Home({ movies, tv, genres }) {
           </header>
 
           <div className="py-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {tv?.slice(0, 4).map((series) => {
+            {tv?.slice(0, 4).map((tvshow) => {
               return (
-                <SeriesCard
-                  key={series.id}
-                  series={series}
+                <TVShowCard
+                  key={tvshow.id}
+                  tvshow={tvshow}
                   mediaConfig={movies.mediaConfig}
                 />
               );

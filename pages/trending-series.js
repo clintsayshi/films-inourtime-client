@@ -3,7 +3,7 @@ import Head from "next/head";
 import React from "react";
 import Layout from "../components/Layout";
 import QueryResult from "../components/QueryResult";
-import SeriesGrid from "../components/SeriesGrid";
+import TVShowGrid from "../components/TVShowGrid";
 import { GET_TRENDING_TV } from "../utils.js/queries";
 
 function TrendingMovies() {
@@ -27,8 +27,8 @@ function TrendingMovies() {
             Top Rated Trending TV Shows
           </h2>
         </header>
-        <SeriesGrid
-          series={data?.trendingTVShows}
+        <TVShowGrid
+          tvshows={data?.trendingTVShows}
           mediaConfig={data?.mediaConfig}
         />
       </QueryResult>

@@ -1,26 +1,33 @@
-import React from "react";
+import { gql, request, useLazyQuery, useQuery } from "@apollo/client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Layout from "../../components/Layout";
 import client from "../../utils.js/apollo-client";
-import { GET_MOVIE, GET_TRENDING_MOVIES } from "../../utils.js/queries";
+import {
+  GET_MOVIE,
+  GET_SERIES,
+  GET_TRENDING_MOVIES,
+  GET_TRENDING_TV,
+} from "../../utils.js/queries";
+import { getDate, getTrailer, monthNames } from "../../utils.js/functions";
 import Link from "next/link";
 import YoutubeEmbed from "../../components/YoutubeEmbed";
-import { getDate, getTrailer } from "../../utils.js/functions";
 
-function Movie({ data }) {
+function TVShow({ data }) {
   const {
-    original_title,
-    title,
+    original_name,
+    name,
     vote_average,
-    release_date,
-    backdrop_path,
-    videos,
+    first_air_date,
     status,
+    videos,
+    seasons,
     production_companies,
     genres,
     overview,
     poster_path,
-  } = data.Movie;
+    backdrop_path,
+  } = data.TVShow;
   const { secure_base_url, poster_sizes } = data.mediaConfig;
 
   return (
@@ -28,7 +35,7 @@ function Movie({ data }) {
       <div className="container mx-auto p-4 space-y-10">
         <header className="space-y-6">
           <small className="flex items-center space-x-2 text-base text-gray-800 sm:text-sm dark:text-gray-100">
-            <span title="The release date">{getDate(release_date)}</span>
+            <span title="The release date">{getDate(first_air_date)}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -41,14 +48,12 @@ function Movie({ data }) {
                 clipRule="evenodd"
               />
             </svg>
-            <span title="The original title">{original_title}</span>
+            <span title="The original title">{original_name}</span>
           </small>
           <h1 className="text-4xl sm:text-5xl font-display font-bold dark:text-gray-100">
-            {title}
+            {name}
           </h1>
         </header>
-
-        <div></div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 space-y-4 md:space-y-0 md:space-x-12">
           <div
@@ -59,8 +64,8 @@ function Movie({ data }) {
             ) : (
               <Image
                 className="object-cover"
-                src={`${secure_base_url}/original/${backdrop_path}`}
-                alt={original_title}
+                src={`${secure_base_url}/original/${poster_path}`}
+                alt={original_name}
                 layout="fill"
               />
             )}
@@ -96,16 +101,14 @@ function Movie({ data }) {
         </div>
       </div>
 
-      <section className="container mx-auto ">
-        <div className="container mx-auto p-4 flex flex-col"></div>
-      </section>
+      <section className="container mx-auto "></section>
     </Layout>
   );
 }
 
 export const getStaticPaths = async () => {
   const { loading, error, data } = await client.query({
-    query: GET_TRENDING_MOVIES,
+    query: GET_TRENDING_TV,
     variables: { timeWindow: "day", limit: 20 },
   });
 
@@ -114,18 +117,19 @@ export const getStaticPaths = async () => {
 
   return {
     paths:
-      data?.trendingMovies.map((movie) => ({
-        params: { movieId: movie.id },
+      data?.trendingTVShows.map((tvshow) => ({
+        params: { tvshowId: tvshow.id },
       })) || [],
     fallback: false,
   };
 };
 
 export const getStaticProps = async ({ params }) => {
+  console.log(params);
   const { loading, error, data } = await client.query({
-    query: GET_MOVIE,
+    query: GET_SERIES,
     variables: {
-      movieId: params.movieId,
+      tvShowId: params.tvshowId,
     },
   });
 
@@ -138,4 +142,4 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-export default Movie;
+export default TVShow;

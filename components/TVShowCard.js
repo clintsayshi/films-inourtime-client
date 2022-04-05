@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function SeriesCard({ series, mediaConfig }) {
+function SeriesCard({ tvshow, mediaConfig }) {
   const { id, poster_path, original_name, name, first_air_date, vote_average } =
-    series;
+    tvshow;
   const { secure_base_url, poster_sizes } = mediaConfig;
 
   return (

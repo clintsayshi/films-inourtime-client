@@ -99,6 +99,7 @@ export const GET_MOVIE = gql`
         name
         key
         type
+        official
       }
       genres {
         name
@@ -139,6 +140,13 @@ export const GET_SERIES = gql`
         episode_count
         name
         poster_path
+      }
+      videos {
+        id
+        name
+        key
+        type
+        official
       }
       number_of_episodes
       number_of_seasons
