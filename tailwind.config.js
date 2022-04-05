@@ -4,6 +4,10 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      display: ["poppins"],
+      body: ["poppins", "sans-serif"],
+    },
     extend: {},
   },
   darkMode: "class",
