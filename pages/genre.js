@@ -12,11 +12,18 @@ function Genre({ location }) {
 
   const router = useRouter();
   const genreId = router.query;
+  const mediaType = router.query.mediaType;
   //console.log(genreId);
 
-  const { loading, error, data } = useQuery(GET_MOVIES_BY_GENRE, {
-    variables: { genreId: router.query.genreId, year: year },
-  });
+  const { loading, error, data } = useQuery(
+    mediaType == "movie" ? GET_MOVIES_BY_GENRE : GET_TV_BY_GENRE,
+    {
+      variables: {
+        genreId: router.query.genreId,
+        year: year,
+      },
+    }
+  );
 
   if (error) return JSON.stringify(error, null, 2);
 
@@ -38,10 +45,17 @@ function Genre({ location }) {
       </header>
 
       <QueryResult loading={loading} error={error} data={data}>
-        <MovieGrid
-          movies={data?.moviesByGenre}
-          mediaConfig={data?.mediaConfig}
-        />
+        {mediaType == "movie" ? (
+          <MovieGrid
+            movies={data?.moviesByGenre}
+            mediaConfig={data?.mediaConfig}
+          />
+        ) : (
+          <TVShowGrid
+            tvshows={data?.tvByGenre}
+            mediaConfig={data?.mediaConfig}
+          />
+        )}
       </QueryResult>
     </Layout>
   );

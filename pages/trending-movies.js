@@ -23,7 +23,7 @@ function TrendingMovies() {
       </Head>
 
       <QueryResult loading={loading} error={error} data={data}>
-        <header className="container mx-auto">
+        <header className="container mx-auto p-4">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
             Top Rated Trending Movies
           </h2>

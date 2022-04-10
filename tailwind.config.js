@@ -8,7 +8,11 @@ module.exports = {
       display: ["poppins"],
       body: ["poppins", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ["poppins"],
+      },
+    },
   },
   darkMode: "class",
   plugins: [],

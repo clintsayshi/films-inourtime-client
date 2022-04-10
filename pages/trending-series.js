@@ -21,10 +21,11 @@ function TrendingMovies() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <QueryResult loading={loading} error={error} data={data}>
-        <header className="container mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            Top Rated Trending TV Shows
+        <header className="container mx-auto p-4 sm:px-0">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+            Trending TV Shows
           </h2>
         </header>
         <TVShowGrid

@@ -35,8 +35,9 @@ function Movie({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container mx-auto p-4 space-y-10">
-        <header className="space-y-6">
+      <div className="container mx-auto space-y-2 lg:space-y-6">
+        {/* Headings - Title/Name */}
+        <header className="p-4 sm:px-0 space-y-4 sm:space-y-6">
           <small className="flex items-center space-x-2 text-base text-gray-800 sm:text-sm dark:text-gray-100">
             <span title="The release date">{getDate(release_date)}</span>
             <svg
@@ -58,8 +59,7 @@ function Movie({ data }) {
           </h1>
         </header>
 
-        <div></div>
-
+        {/* Media */}
         <div className="grid grid-cols-1 md:grid-cols-2 space-y-4 md:space-y-0 md:space-x-12">
           <div
             className={`relative w-full h-72 lg:h-96 bg-[${secure_base_url}${poster_sizes[5]}/${poster_path}]`}
@@ -76,7 +76,7 @@ function Movie({ data }) {
             )}
           </div>
 
-          <div className="space-y-2">
+          <div className="p-4 sm:p-0 space-y-2">
             <div className="flex justify-between items-center">
               <small className="text-gray-900 dark:text-gray-100">
                 {vote_average}&nbsp;IMDb rating

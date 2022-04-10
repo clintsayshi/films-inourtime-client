@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function Header() {
   const toggleDarkMode = () => {
@@ -15,9 +16,17 @@ function Header() {
     }
   };
 
+  const router = useRouter();
+
+  const links = [
+    ["Home", "/"],
+    ["Movies", "/movies"],
+    ["TV Shows", "/tvshows"],
+  ];
+
   return (
     <header className="bg-gray-50 dark:bg-gray-900">
-      <nav className="container mx-auto px-4 py-2 flex items-center justify-between">
+      <nav className="container mx-auto p-4 sm:px-0 flex items-center justify-between">
         <div className="flex items-center gap-4">
           {/*  <button className="sm:hidden text-gray-900 dark:text-gray-100">
             <svg
@@ -36,13 +45,18 @@ function Header() {
             </svg>
           </button> */}
 
-          <Link href="/">
-            <a className="text-lg dark:text-gray-100">Home</a>
-          </Link>
-
           <div className="hidden sm:flex gap-4">
-            <a className="text-lg dark:text-gray-100">Movies</a>
-            <a className="text-lg dark:text-gray-100">Series</a>
+            {links.map(([title, url], key) => (
+              <Link key={key} href={url}>
+                <a
+                  className={`text-base dark:text-gray-100 underline-offset-4 ${
+                    url == router.pathname ? "underline" : ""
+                  }`}
+                >
+                  {title}
+                </a>
+              </Link>
+            ))}
           </div>
         </div>
 

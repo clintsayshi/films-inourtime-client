@@ -5,7 +5,7 @@ import Layout from "../../components/Layout";
 import client from "../../utils.js/apollo-client";
 import {
   GET_MOVIE,
-  GET_SERIES,
+  GET_TV,
   GET_TRENDING_MOVIES,
   GET_TRENDING_TV,
 } from "../../utils.js/queries";
@@ -42,9 +42,10 @@ function TVShow({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container mx-auto p-4 space-y-10">
-        <header className="space-y-6">
-          <small className="flex items-center space-x-2 text-base text-gray-800 sm:text-sm dark:text-gray-100">
+      <div className="container mx-auto space-y-2 lg:space-y-6">
+        {/* Headings - Title/Name */}
+        <header className="p-4 sm:px-0 space-y-4 sm:space-y-6">
+          <small className="flex items-center flex-wrap space-x-2 text-base text-gray-800 sm:text-sm dark:text-gray-100">
             <span title="The release date">{getDate(first_air_date)}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -66,6 +67,7 @@ function TVShow({ data }) {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 space-y-4 md:space-y-0 md:space-x-12">
+          {/* Media */}
           <div
             className={`relative w-full h-72 lg:h-96 bg-[${secure_base_url}${poster_sizes[5]}/${poster_path}]`}
           >
@@ -81,7 +83,7 @@ function TVShow({ data }) {
             )}
           </div>
 
-          <div className="space-y-2">
+          <div className="px-4 sm:px-0 space-y-2">
             <div className="flex justify-between items-center">
               <small className="text-gray-900 dark:text-gray-100">
                 {vote_average}&nbsp;IMDb rating
@@ -107,6 +109,36 @@ function TVShow({ data }) {
             </div>
 
             <p className="text-gray-900 dark:text-gray-100">{overview}</p>
+
+            <div className="py-4 space-y-4">
+              {seasons.map((season) => (
+                <details key={season.id} className="w-full shadow border">
+                  <summary className="px-4 py-2 border-b text-lg dark:text-gray-100 font-medium marker:content-none transition-colors duration-200 outline-none cursor-pointer">
+                    {season.name}
+                  </summary>
+                  <div className="p-4 space-y-4 flex flex-col items-start transition-all duration-150 ">
+                    {season.poster_path != null ? (
+                      <div className="relative flex justify-start h-96 w-full sm:w-56 border">
+                        <Image
+                          className="object-contain dark:text-gray-100"
+                          src={`${secure_base_url}original/${season.poster_path}`}
+                          alt={season.name}
+                          layout="fill"
+                        />
+                      </div>
+                    ) : (
+                      ""
+                    )}
+
+                    <p className="dark:text-gray-100">
+                      {season.overview != ""
+                        ? season.overview
+                        : "Overview not found"}
+                    </p>
+                  </div>
+                </details>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -137,7 +169,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   console.log(params);
   const { loading, error, data } = await client.query({
-    query: GET_SERIES,
+    query: GET_TV,
     variables: {
       tvShowId: params.tvshowId,
     },

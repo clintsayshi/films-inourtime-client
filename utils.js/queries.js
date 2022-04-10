@@ -83,6 +83,23 @@ export const GET_MOVIES_BY_GENRE = gql`
   }
 `;
 
+export const GET_TV_BY_GENRE = gql`
+  query TVByGenre($genreId: ID!, $year: Int!) {
+    tvByGenre(genreId: $genreId, year: $year) {
+      id
+      name
+      first_air_date
+      vote_average
+      poster_path
+    }
+    mediaConfig {
+      secure_base_url
+      poster_sizes
+      logo_sizes
+    }
+  }
+`;
+
 export const GET_MOVIE = gql`
   query Movie($movieId: ID!) {
     Movie(id: $movieId) {
@@ -125,7 +142,7 @@ export const GET_MOVIE = gql`
   }
 `;
 
-export const GET_SERIES = gql`
+export const GET_TV = gql`
   query getTVShow($tvShowId: ID!) {
     TVShow(id: $tvShowId) {
       id
@@ -136,6 +153,7 @@ export const GET_SERIES = gql`
       overview
       seasons {
         id
+        overview
         air_date
         episode_count
         name

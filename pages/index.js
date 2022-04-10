@@ -1,17 +1,12 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import MovieCard from "../components/MovieCard";
-import TVShowCard from "../components/TVShowCard";
 import Layout from "../components/Layout";
-import client from "../utils.js/apollo-client";
-import {
-  GET_LIST_OF_GENRES,
-  GET_TRENDING_MOVIES,
-  GET_TRENDING_TV,
-} from "../utils.js/queries";
+import FeaturedMovies from "../components/FeaturedMovies";
+import FeaturedTVShows from "../components/FeaturedTVShows";
+import FeaturedGenres from "../components/FeaturesGenres";
 
-export default function Home({ movies, tv, genres }) {
+export default function Home() {
   return (
     <Layout>
       <Head>
@@ -32,114 +27,77 @@ export default function Home({ movies, tv, genres }) {
           </div>
         </section>
 
-        <section className="relative container mx-auto px-4">
-          <header className="sticky top-0 py-4 flex items-center justify-between bg-white dark:bg-gray-900 z-50">
-            <h2 className="text-2xl font-medium dark:text-gray-100">
+        <section className="relative container mx-auto">
+          <header className="sticky top-0 py-2 flex items-center justify-between bg-white dark:bg-gray-900 z-50">
+            <h2 className="text-xl font-medium dark:text-gray-100">
               Top Trending Movies
             </h2>
 
             <div className="flex items-center">
               <Link href="/trending-movies">
-                <a className="text-gray-900 dark:text-gray-100">View All</a>
+                <a className="flex items-center text-sm text-gray-900 dark:text-gray-100">
+                  See More&nbsp;
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
               </Link>
             </div>
           </header>
-
-          <div className="py-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {movies?.trendingMovies.slice(0, 4).map((movie) => {
-              return (
-                <MovieCard
-                  key={movie.id}
-                  movie={movie}
-                  mediaConfig={movies.mediaConfig}
-                />
-              );
-            })}
-          </div>
+          <FeaturedMovies />
         </section>
 
-        <section className="relative container mx-auto px-4">
-          <header className="sticky top-0 py-4 flex items-center justify-between bg-white dark:bg-gray-900 z-50">
-            <h2 className="text-2xl font-medium dark:text-gray-100">
+        <section className="relative container mx-auto">
+          <header className="sticky top-0 py-2 flex items-center justify-between bg-white dark:bg-gray-900 z-50">
+            <h2 className="text-xl font-medium dark:text-gray-100">
               Top Trending Shows
             </h2>
 
             <div className="flex items-center">
               <Link href="/trending-series">
-                <a className="text-gray-900 dark:text-gray-100">View All</a>
+                <a className="flex items-center text-sm text-gray-900 dark:text-gray-100">
+                  See More&nbsp;
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
               </Link>
             </div>
           </header>
 
-          <div className="py-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {tv?.slice(0, 4).map((tvshow) => {
-              return (
-                <TVShowCard
-                  key={tvshow.id}
-                  tvshow={tvshow}
-                  mediaConfig={movies.mediaConfig}
-                />
-              );
-            })}
-          </div>
+          <FeaturedTVShows />
         </section>
 
-        <section className="relative container mx-auto px-4">
-          <header className="sticky top-0 py-4 flex items-center justify-between bg-white dark:bg-gray-900 z-50">
-            <h2 className="text-2xl font-medium dark:text-gray-100">
-              Browse Movies By genre
-            </h2>
-          </header>
-
-          <div className="py-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {genres?.map((genre) => {
-              return (
-                <Link
-                  href={{
-                    pathname: "/genre",
-                    query: { genreId: genre.id, name: genre.name },
-                  }}
-                  key={genre.id}
-                >
-                  <a className="w-max p-8 dark:text-gray-100 rounded-full border">
-                    {genre.name}
-                  </a>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
+        <FeaturedGenres />
       </main>
     </Layout>
   );
 }
 
 export const getStaticProps = async () => {
-  const { error: moviesError, data: movies } = await client.query({
-    query: GET_TRENDING_MOVIES,
-    variables: { timeWindow: "day", limit: 4 },
-  });
-
-  const { error: tvError, data: tv } = await client.query({
-    query: GET_TRENDING_TV,
-    variables: { timeWindow: "day", limit: 4 },
-  });
-
-  const { error: genresError, data: genres } = await client.query({
-    query: GET_LIST_OF_GENRES,
-    variables: { mediaType: "movie" },
-  });
-  console.log(genres.listOfGenres);
-  if (moviesError) console.log("ERROR...");
-  if (tvError) console.log("ERROR...");
-  if (genresError) console.log("ERROR...");
-  //if (tvError) console.log("Error connecting to the server...");
-
   return {
-    props: {
-      movies: movies,
-      tv: tv.trendingTVShows,
-      genres: genres.listOfGenres,
-    },
+    props: {},
   };
 };

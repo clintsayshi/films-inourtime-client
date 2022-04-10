@@ -4,10 +4,10 @@ import Header from "./Header";
 
 function Layout({ children }) {
   return (
-    <div className="dark:bg-gray-900 min-h-screen font-poppins">
+    <div className="dark:bg-gray-900 flex flex-col min-h-screen">
       <Header />
 
-      {children}
+      <main className="flex-grow">{children}</main>
 
       <Footer />
     </div>
