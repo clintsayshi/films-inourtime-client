@@ -37,14 +37,18 @@ function FeaturedGenres() {
         </h2>
         <div className="space-x-2">
           <button
-            className="text-sm dark:text-gray-100"
+            className={`text-sm dark:text-gray-100 p-2 ${
+              byGenre.value == "movie" ? "border" : ""
+            }`}
             onClick={byWhichGenre}
             value="movie"
           >
             Movies
           </button>
           <button
-            className="text-sm dark:text-gray-100"
+            className={`text-sm dark:text-gray-100 p-2 ${
+              byGenre.value == "tv" ? "border" : ""
+            }`}
             onClick={byWhichGenre}
             value="tv"
           >
