@@ -44,6 +44,11 @@ function Header() {
               />
             </svg>
           </button> */}
+          <Link href="/">
+            <a className={`text-base dark:text-gray-100 underline-offset-4`}>
+              WS
+            </a>
+          </Link>
 
           <div className="hidden sm:flex gap-4">
             {links.map(([title, url], key) => (

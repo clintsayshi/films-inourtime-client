@@ -4,7 +4,7 @@ import Link from "next/link";
 import Layout from "../components/Layout";
 import FeaturedMovies from "../components/FeaturedMovies";
 import FeaturedTVShows from "../components/FeaturedTVShows";
-import FeaturedGenres from "../components/FeaturesGenres";
+import FeaturedGenres from "../components/FeaturedGenres";
 
 export default function Home() {
   return (

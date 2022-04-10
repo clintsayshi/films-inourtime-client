@@ -4,14 +4,14 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import MovieGrid from "../components/MovieGrid";
+import TVShowGrid from "../components/TVShowGrid";
 import QueryResult from "../components/QueryResult";
-import { GET_MOVIES_BY_GENRE } from "../utils.js/queries";
+import { GET_MOVIES_BY_GENRE, GET_TV_BY_GENRE } from "../utils.js/queries";
 
 function Genre({ location }) {
   const [year, setYear] = useState(new Date().getFullYear());
 
   const router = useRouter();
-  const genreId = router.query;
   const mediaType = router.query.mediaType;
   //console.log(genreId);
 

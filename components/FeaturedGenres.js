@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useState } from "react";
-import QueryResult from "../components/QueryResult";
+import QueryResult from "./QueryResult";
 import { GET_LIST_OF_GENRES } from "../utils.js/queries";
 
 function FeaturedGenres() {
