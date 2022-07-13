@@ -20,8 +20,8 @@ function Header() {
 
   const links = [
     ["Home", "/"],
-    ["Movies", "/movies"],
-    ["TV Shows", "/tvshows"],
+    /*["Movies", "/movies"],
+    ["TV Shows", "/tvshows"],*/
   ];
 
   return (
