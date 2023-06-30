@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, HttpLink, from } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:4000",
+  uri: "https://films-inourtime-server.herokuapp.com",
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
